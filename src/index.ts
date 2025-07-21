@@ -1,8 +1,9 @@
 import './config'; // Load environment variables
-import { getCustomers, addCustomer } from './models/testCustomerModel'
+import { getCustomers} from './models/testCustomerModel' // test 
 import express, {Express} from 'express';
-//import path from 'path';
-import { createNewCustomer } from './controllers/testCustomerController';
+import { createNewCustomer } from './controllers/testCustomerController'; // test
+import { handleCustomerAndRepair, handleRepairForCustomer } from './controllers/repairController';
+
 
 
 
@@ -12,8 +13,11 @@ app.use(express.json());
 app.use(express.urlencoded( {extended: true}));
 app.use(express.static('public', {extensions: ['html']}));
 
-// Endpoints
-app.post('/AddCustomerTest', createNewCustomer);
+// Endpointsc\\
+app.post('/AddCustomerTest', createNewCustomer); // test
+app.post('/repairs/create-customer-repair', handleCustomerAndRepair);
+app.post('/repairs/create-repair', handleRepairForCustomer );
+
 
 
 app.listen(PORT, () => {

@@ -1,0 +1,29 @@
+<form action="/repairs/create-customer-repair" method="POST">
+  <h3>Customer Info</h3>
+  <input name="first_name" placeholder="First Name" required />
+  <input name="last_name" placeholder="Last Name" required />
+  <input name="address" placeholder="Address" required />
+  <input name="city" placeholder="City" required />
+  <input name="state" placeholder="State (e.g. AR)" maxlength="2" required />
+  <input name="zip" placeholder="ZIP Code" required />
+  <input name="phone" placeholder="Phone Number" required />
+  <input name="email" placeholder="Email" type="email" required />
+  <textarea name="notes" placeholder="Customer Notes"></textarea>
+
+  <h3>Repair Info</h3>
+  <input name="items_brought" placeholder="Items Brought" required />
+  <input name="problem" placeholder="Problem Description" required />
+  <input name="solution" placeholder="Proposed Solution" required />
+  <input name="repair_cost" placeholder="Repair Cost" type="number" step="0.01" required />
+  <select name="status">
+    <option value="not started">Not Started</option>
+    <option value="in progress">In Progress</option>
+    <option value="completed">Completed</option>
+    <option value="unsuccessful">Unsuccessful</option>
+  </select>
+  <textarea name="notes_repair" placeholder="Repair Notes"></textarea>
+  <input name="start_date" type="datetime-local" required />
+  <input name="end_date" type="datetime-local" required />
+
+  <button type="submit">Create Customer & Repair</button>
+</form>

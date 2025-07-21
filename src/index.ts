@@ -1,28 +1,24 @@
 import './config'; // Load environment variables
-import { getCustomers, addCustomer } from './controllers/testCustomer'
-// import express, {Express} from 'express';
-// import { handleAnswer } from './controllers/QuizController';
+import { getCustomers, addCustomer } from './models/testCustomerModel'
+import express, {Express} from 'express';
+//import path from 'path';
+import { createNewCustomer } from './controllers/testCustomerController';
 
 
 
-// const PORT = process.env.PORT;
-// const app: Express = express();
-// app.use(express.json());
-// app.use(express.urlencoded());
-// app.use(express.static('public', {extensions: ['html']}));
+const PORT = process.env.PORT;
+const app: Express = express();
+app.use(express.json());
+app.use(express.urlencoded( {extended: true}));
+app.use(express.static('public', {extensions: ['html']}));
 
-// // Define the router for submitting ansers
-// app.post('/answers', handleAnswer);
+// Endpoints
+app.post('/AddCustomerTest', createNewCustomer);
 
 
-// app.listen(PORT, () => {
-//     console.log(`Server listening on  http://localhost:${PORT}`);
-// });
+app.listen(PORT, () => {
+    console.log(`Server listening on  http://localhost:${PORT}`);
+});
 
-// console.log("...");
-async function main() {
-    await addCustomer('Alice', 'Johnson', '100 Oak St', 'Little Rock', 'AR', '72201', '555-1234', 'alice.johnson@example.com', 'Prefers evening calls');
-    const customers = await getCustomers();
-    console.log(customers);
-}
-main().catch(console.error);
+const customers = await getCustomers();
+console.log(customers);

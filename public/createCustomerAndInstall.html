@@ -1,0 +1,20 @@
+<form action="/installs/create-customer-install" method="POST">
+  <h3>Customer Info</h3>
+  <input name="first_name" required placeholder="First Name" />
+  <input name="last_name" required placeholder="Last Name" />
+  <input name="address" required placeholder="Address" />
+  <input name="city" required placeholder="City" />
+  <input name="state" required maxlength="2" placeholder="State" />
+  <input name="zip" required placeholder="ZIP Code" />
+  <input name="phone" required placeholder="Phone" />
+  <input name="email" required type="email" placeholder="Email" />
+  <textarea name="notes" placeholder="Customer Notes"></textarea>
+
+  <h3>Install Info</h3>
+  <input name="description" required placeholder="Install Description" />
+  <input name="cost" required type="number" step="0.01" placeholder="Install Cost" />
+  <input name="install_date" required type="date" />
+  <textarea name="install_notes" placeholder="Install Notes"></textarea>
+
+  <button type="submit">Create Customer & Install</button>
+</form>

@@ -1,53 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Repair for Existing Customer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Add title</h2>
+
+  <!-- Replace this with your existing form code -->
+
 <form action="/repairs/create-repair" method="POST">
-    <h3>Lookup Customer</h3>
+  <h3>Lookup Customer</h3>
+
+  <label for="customerSearch">Search by Name or Phone:</label>
   <input type="text" id="customerSearch" placeholder="Type name or phone..." autocomplete="off" />
+
+  <label for="customerResults">Matching Customers:</label>
   <select id="customerResults" required>
     <option value="">Select a customer...</option>
   </select>
+
   <input type="hidden" name="customer_id" id="customer_id" />
+
   <h3>Repair Info</h3>
-  <input name="items_brought" placeholder="Items Brought" required />
-  <input name="problem" placeholder="Problem Description" required />
-  <input name="solution" placeholder="Solution" required />
-  <input name="repair_cost" placeholder="Repair Cost" type="number" step="0.01" required />
-  <select name="status">
+
+  <label for="items_brought">Items Brought:</label>
+  <input name="items_brought" id="items_brought" placeholder="Items Brought" required />
+
+  <label for="problem">Problem Description:</label>
+  <input name="problem" id="problem" placeholder="Problem Description" required />
+
+  <label for="solution">Solution:</label>
+  <input name="solution" id="solution" placeholder="Solution" required />
+
+  <label for="repair_cost">Repair Cost ($):</label>
+  <input name="repair_cost" id="repair_cost" type="number" step="0.01" placeholder="Repair Cost" required />
+
+  <label for="status">Repair Status:</label>
+  <select name="status" id="status">
     <option value="Not Started">Not Started</option>
     <option value="In Progress">In Progress</option>
     <option value="Completed">Completed</option>
     <option value="Unsuccessful">Unsuccessful</option>
   </select>
-  <textarea name="notes" placeholder="Repair Notes"></textarea>
-  <input name="start_date" type="datetime-local" required />
-  <input name="end_date" type="datetime-local" required />
+
+  <label for="notes">Repair Notes:</label>
+  <textarea name="notes" id="notes" placeholder="Repair Notes"></textarea>
+
+  <label for="start_date">Start Date & Time:</label>
+  <input name="start_date" id="start_date" type="datetime-local" required />
+
+  <label for="end_date">End Date & Time:</label>
+  <input name="end_date" id="end_date" type="datetime-local" required />
 
   <button type="submit">Create Repair</button>
 </form>
-<script>
-  const searchInput = document.getElementById('customerSearch');
-  const resultsSelect = document.getElementById('customerResults');
-  const hiddenIdField = document.getElementById('customer_id');
 
-  searchInput.addEventListener('input', async () => {
-    const query = searchInput.value.trim();
-    if (!query) return;
+  <!-- 🔙 Back to homepage -->
+  <button onclick="location.href='index.html'">⬅️ Back to Home</button>
+</body>
+<script src="js/customerLookup.js" defer></script>
+</html>
 
-    try {
-      const response = await fetch(`/api/customers/search?q=${encodeURIComponent(query)}`);
-      const customers = await response.json();
-
-      resultsSelect.innerHTML = '<option value="">Select a customer...</option>';
-      customers.forEach(c => {
-        const option = document.createElement('option');
-        option.value = c.customer_id;
-        option.text = `${c.first_name} ${c.last_name} (${c.phone})`;
-        resultsSelect.appendChild(option);
-      });
-    } catch (err) {
-      resultsSelect.innerHTML = '<option value="">Error loading results</option>';
-    }
-  });
-
-  resultsSelect.addEventListener('change', () => {
-    hiddenIdField.value = resultsSelect.value;
-  });
-</script>

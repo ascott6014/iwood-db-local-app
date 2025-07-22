@@ -15,7 +15,7 @@ app.use(express.json());
 app.use(express.urlencoded( {extended: true}));
 app.use(express.static('public', {extensions: ['html']}));
 
-// Endpointsss
+// Endpointss
 app.post('/createCustomer', handleCreateNewCustomer); 
 app.post('/repairs/create-customer-repair', handleCustomerAndRepair);
 app.post('/repairs/create-repair', handleRepairForCustomer ); 

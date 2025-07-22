@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 import { getAllCustomers, searchCustomers, addCustomer } from '../models/customerModel';
 
 
-async function handleGetCustomers(_req: Request, res: Response) {
+ export async function handleGetCustomers(_req: Request, res: Response) {
   try {
     const customers = await getAllCustomers();
     res.status(200).json(customers);
@@ -13,7 +13,7 @@ async function handleGetCustomers(_req: Request, res: Response) {
 }
 
 
-async function handleCustomerSearch(req: Request, res: Response) {
+export async function handleCustomerSearch(req: Request, res: Response) {
   const query = req.query.q as string;
 
   if (!query || query.trim().length < 2) {
@@ -29,7 +29,7 @@ async function handleCustomerSearch(req: Request, res: Response) {
   }
 }
 
-async function handleCreateNewCustomer (req: Request, res: Response): Promise <void> {
+export async function handleCreateNewCustomer (req: Request, res: Response): Promise <void> {
     const {first_name, last_name, address, city, state, zip, phone, email, notes } = req.body;
     
     try {
@@ -44,6 +44,3 @@ async function handleCreateNewCustomer (req: Request, res: Response): Promise <v
 
 
 
-
-
-export { handleGetCustomers, handleCustomerSearch, handleCreateNewCustomer }

@@ -1,46 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Repair for Existing Customer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Add title</h2>
+
+  <!-- Replace this with your existing form code -->
 <form action="/create-install" method="POST">
   <h3>Lookup Customer</h3>
+
+  <label for="customerSearch">Search by Name or Phone:</label>
   <input type="text" id="customerSearch" placeholder="Type name or phone..." autocomplete="off" />
+
+  <label for="customerResults">Matching Customers:</label>
   <select id="customerResults" required>
     <option value="">Select a customer...</option>
   </select>
+
   <input type="hidden" name="customer_id" id="customer_id" />
 
-  <!-- Rest of the install form -->
   <h3>Install Info</h3>
-  <input name="description" required placeholder="Install Description" />
-  <input name="cost" required type="number" step="0.01" placeholder="Install Cost" />
-  <input name="install_date" required type="date" />
-  <textarea name="install_notes" placeholder="Install Notes"></textarea>
+
+  <label for="description">Install Description:</label>
+  <input name="description" id="description" required />
+
+  <label for="cost">Install Cost ($):</label>
+  <input name="cost" id="cost" required type="number" step="0.01" />
+
+  <label for="install_date">Install Date:</label>
+  <input name="install_date" id="install_date" required type="date" />
+
+  <label for="install_notes">Install Notes:</label>
+  <textarea name="install_notes" id="install_notes"></textarea>
 
   <button type="submit">Create Install</button>
 </form>
-<script>
-  const searchInput = document.getElementById('customerSearch');
-  const resultsSelect = document.getElementById('customerResults');
-  const hiddenIdField = document.getElementById('customer_id');
 
-  searchInput.addEventListener('input', async () => {
-    const query = searchInput.value.trim();
-    if (!query) return;
 
-    try {
-      const response = await fetch(`/api/customers/search?q=${encodeURIComponent(query)}`);
-      const customers = await response.json();
 
-      resultsSelect.innerHTML = '<option value="">Select a customer...</option>';
-      customers.forEach(c => {
-        const option = document.createElement('option');
-        option.value = c.customer_id;
-        option.text = `${c.first_name} ${c.last_name} (${c.phone})`;
-        resultsSelect.appendChild(option);
-      });
-    } catch (err) {
-      resultsSelect.innerHTML = '<option value="">Error loading results</option>';
-    }
-  });
+  <!-- 🔙 Back to homepage -->
+  <button onclick="location.href='index.html'">⬅️ Back to Home</button>
+</body>
+</html>
 
-  resultsSelect.addEventListener('change', () => {
-    hiddenIdField.value = resultsSelect.value;
-  });
-</script>
+<script src="js/customerLookup.js" defer></script>
+

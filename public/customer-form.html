@@ -1,12 +1,59 @@
-<form action="/createCustomer" method="POST">
-  <input name="first_name" placeholder="First Name" required />
-  <input name="last_name" placeholder="Last Name" required />
-  <input name="address" placeholder="Street" required />
-  <input name="city" placeholder="City" required />
-  <input name="state" placeholder="State (e.g. AR)" maxlength="2" required />
-  <input name="zip" placeholder="ZIP" required />
-  <input name="phone" placeholder="Phone" required />
-  <input name="email" placeholder="Email" required />
-  <textarea name="notes" placeholder="Notes"></textarea>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Create Repair for Existing Customer</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 40px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 15px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Add title</h2>
+
+  <!-- Replace this with your existing form code -->
+  <form action="/createCustomer" method="POST">
+  <label for="first_name">First Name:</label>
+  <input name="first_name" id="first_name" placeholder="First Name" required />
+
+  <label for="last_name">Last Name:</label>
+  <input name="last_name" id="last_name" placeholder="Last Name" required />
+
+  <label for="address">Street Address:</label>
+  <input name="address" id="address" placeholder="Street" required />
+
+  <label for="city">City:</label>
+  <input name="city" id="city" placeholder="City" required />
+
+  <label for="state">State (2-letter code):</label>
+  <input name="state" id="state" maxlength="2" placeholder="State (e.g. AR)" required />
+
+  <label for="zip">ZIP Code:</label>
+  <input name="zip" id="zip" placeholder="ZIP" required />
+
+  <label for="phone">Phone Number:</label>
+  <input name="phone" id="phone" placeholder="Phone" required />
+
+  <label for="email">Email Address:</label>
+  <input name="email" id="email" placeholder="Email" type="email" required />
+
+  <label for="notes">Notes:</label>
+  <textarea name="notes" id="notes" placeholder="Notes"></textarea>
+
   <button type="submit">Add Customer</button>
 </form>
+
+
+
+  <!-- 🔙 Back to homepage -->
+  <button onclick="location.href='index.html'">⬅️ Back to Home</button>
+</body>
+</html>

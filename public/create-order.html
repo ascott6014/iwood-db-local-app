@@ -2,55 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Create Repair for Existing Customer</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 40px;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Create Order for Existing Customer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/css/styles.css" />
+  <script src="/js/customerLookup.js" defer></script>
+  <script src="/js/previewAndSubmit.js" defer></script>
 </head>
 <body>
-  <h2>Add title</h2>
+  <div class="page-container">
+    <div class="form-wrapper">
+      <h2>Order Submission</h2>
 
-  <!-- Replace this with your existing form code -->
-  <form action="/orders/create-order" method="POST">
-  <h3>Lookup Customer</h3>
+      <form id="mainForm" action="/orders/create-order" method="POST">
 
-  <label for="customerSearch">Search by Name or Phone:</label>
-  <input type="text" id="customerSearch" placeholder="Type name or phone..." autocomplete="off" />
+        <h3>Lookup Customer</h3>
+        <div class="form-row">
+          <label for="customerSearch">Search:</label>
+          <input type="text" id="customerSearch" placeholder="Type name or phone..." autocomplete="off" />
+        </div>
+        <div class="form-row">
+          <label for="customerResults">Matches:</label>
+          <select id="customerResults" required>
+            <option value="">Select a customer...</option>
+          </select>
+        </div>
+        <input type="hidden" name="customer_id" id="customer_id" />
 
-  <label for="customerResults">Matching Customers:</label>
-  <select id="customerResults" required>
-    <option value="">Select a customer...</option>
-  </select>
+        <h3>Order Info</h3>
+        <div class="form-row">
+          <label for="order_date">Order Date:</label>
+          <input name="order_date" id="order_date" type="date" required />
+        </div>
+        <div class="form-row">
+          <label for="order_total">Order Total ($):</label>
+          <input name="order_total" id="order_total" type="number" step="0.01" required />
+        </div>
 
-  <input type="hidden" name="customer_id" id="customer_id" />
-
-  <h3>Order Info</h3>
-
-  <label for="order_date">Order Date:</label>
-  <input name="order_date" id="order_date" type="date" required />
-
-  <label for="order_total">Order Total ($):</label>
-  <input name="order_total" id="order_total" type="number" step="0.01" required />
-
-  <button type="submit">Create Order</button>
-</form>
-
-
-  <!-- 🔙 Back to homepage -->
-  <button onclick="location.href='index.html'">⬅️ Back to Home</button>
-  <button type="reset">Clear Form</button>
-
+        <div class="form-actions">
+          <button type="reset">Clear Form</button>
+          <button type="button" id="previewBtn">Review & Print</button>
+          <button type="button" onclick="location.href='index.html'">⬅️ Back to Home</button>
+        </div>
+      </form>
+    </div>
+  </div>
 </body>
 </html>
-
-<script src="js/customerLookup.js" defer></script>
-

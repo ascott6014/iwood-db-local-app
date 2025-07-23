@@ -5,14 +5,13 @@ document.addEventListener('DOMContentLoaded', () => {
   if (!form || !previewBtn) return;
 
   previewBtn.addEventListener('click', () => {
-    // ✅ Prevent preview if form is incomplete
     if (!form.checkValidity()) {
-      form.reportValidity(); // Show browser validation messages
+      form.reportValidity(); // Show native browser validation prompts
       return;
     }
 
     const data = new FormData(form);
-    let summaryHTML = '<h2>Submission Summary</h2><ul>';
+    let summaryHTML = '<h2>Customer Receipt</h2><ul>';
 
     for (const [key, value] of data.entries()) {
       if (value) {
@@ -20,35 +19,32 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     }
 
-    summaryHTML += `
-      </ul>
-      <div style="margin-top: 20px;">
-        <button onclick="printFullPage()">🖨️ Print</button>
-        <button onclick="submitForm()">✅ Confirm & Submit</button>
-        <button onclick="closeSummary()">❌ Cancel</button>
-      </div>
-    `;
+    summaryHTML += '</ul>';
 
-    const summaryDiv = document.createElement('div');
-    summaryDiv.id = 'summaryPopup';
-    summaryDiv.innerHTML = summaryHTML;
-    document.body.appendChild(summaryDiv);
+    // Receipt container for automatic printing
+    const receipt = document.createElement('div');
+    receipt.id = 'autoPrintReceipt';
+    receipt.innerHTML = summaryHTML;
+    document.body.appendChild(receipt);
 
-    Object.assign(summaryDiv.style, {
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
+    Object.assign(receipt.style, {
+      position: 'absolute',
+      top: '0',
+      left: '0',
+      width: '100%',
       padding: '30px',
       background: '#fff',
-      boxShadow: '0 0 15px rgba(0,0,0,0.2)',
+      fontFamily: 'sans-serif',
       zIndex: '9999',
-      maxHeight: '90vh',
-      overflowY: 'auto',
-      borderRadius: '8px',
-      width: '90%',
-      maxWidth: '600px',
     });
+
+    // Trigger immediate print
+    window.print();
+
+    // Remove receipt from DOM after print
+    setTimeout(() => {
+      if (receipt) document.body.removeChild(receipt);
+    }, 1000);
   });
 });
 
@@ -94,7 +90,7 @@ function closeSummary() {
 function printFullPage() {
   const summary = document.getElementById('summaryPopup');
   if (summary) {
-    document.body.removeChild(summary); // Temporarily remove popup
+    document.body.removeChild(summary); // Hide popup
   }
 
   window.print();

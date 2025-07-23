@@ -17,7 +17,7 @@ app.use(express.static('public', {extensions: ['html']}));
 app.use(express.json());
 
 
-// Endpointss
+// Endpoints
 app.post('/createCustomer', handleCreateNewCustomer); 
 app.post('/repairs/create-customer-repair', handleCustomerAndRepair);
 app.post('/repairs/create-repair', handleRepairForCustomer ); 
@@ -29,11 +29,14 @@ app.post('/create-install', handleCreateInstallForCustomer);
 app.get('/api/customers', handleGetCustomers);
 app.get('/api/customers/search', handleCustomerSearch);
 
+
+const customers = await getCustomers();
 app.listen(PORT, () => {
     console.log(`Server listening on  http://localhost:${PORT}`);
+    
+    console.log(customers);
 });
 
 
 
-const customers = await getCustomers();
-console.log(customers);
+

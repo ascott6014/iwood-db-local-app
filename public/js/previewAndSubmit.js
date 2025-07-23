@@ -85,14 +85,18 @@ function closeSummary() {
   }
 }
 function printFullPage() {
-  // Remove the popup before printing
   const summary = document.getElementById('summaryPopup');
-  if (summary) summary.style.display = 'none';
+  if (summary) {
+    // Temporarily remove the popup from the DOM
+    document.body.removeChild(summary);
+  }
 
-  // Print the full page
   window.print();
 
-  // Restore the popup afterward
-  if (summary) summary.style.display = 'block';
+  if (summary) {
+    // Re-add the popup after printing
+    document.body.appendChild(summary);
+  }
 }
+
 

@@ -86,3 +86,18 @@ button {
 button:hover {
   background-color: #195a84;
 }
+
+@media print {
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  html {
+    overflow: hidden !important;
+  }
+
+  #summaryPopup {
+    display: none !important;
+  }
+}

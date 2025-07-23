@@ -2,58 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Create Repair for Existing Customer</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 40px;
-    }
-    button {
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 15px;
-      cursor: pointer;
-    }
-  </style>
+  <title>Create Customer</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <script src="js/previewAndSubmit.js" defer></script>
 </head>
 <body>
-  <h2>Add title</h2>
+  <div class="page-container">
+    <div class="form-wrapper">
+      <h2>Customer Info</h2>
 
-  <!-- Replace this with your existing form code -->
-  <form action="/createCustomer" method="POST">
-  <label for="first_name">First Name:</label>
-  <input name="first_name" id="first_name" placeholder="First Name" required />
+      <form id="mainForm" action="/createCustomer" method="POST">
 
-  <label for="last_name">Last Name:</label>
-  <input name="last_name" id="last_name" placeholder="Last Name" required />
+        <!-- First & Last Name -->
+        <div class="form-row-group">
+          <div class="form-row">
+            <label for="first_name">First Name:</label>
+            <input id="first_name" name="first_name" placeholder="First Name" required />
+          </div>
 
-  <label for="address">Street Address:</label>
-  <input name="address" id="address" placeholder="Street" required />
+          <div class="form-row">
+            <label for="last_name">Last Name:</label>
+            <input id="last_name" name="last_name" placeholder="Last Name" required />
+          </div>
+        </div>
 
-  <label for="city">City:</label>
-  <input name="city" id="city" placeholder="City" required />
+        <!-- Address Info -->
+        <h3>Address Information</h3>
 
-  <label for="state">State (2-letter code):</label>
-  <input name="state" id="state" maxlength="2" placeholder="State (e.g. AR)" required />
+        <div class="form-row">
+          <label for="address">Street Address:</label>
+          <input id="address" name="address" placeholder="Street" required />
+        </div>
 
-  <label for="zip">ZIP Code:</label>
-  <input name="zip" id="zip" placeholder="ZIP" required />
+        <div class="form-row">
+          <label for="city">City:</label>
+          <input id="city" name="city" placeholder="City" required />
+        </div>
 
-  <label for="phone">Phone Number:</label>
-  <input name="phone" id="phone" placeholder="Phone" required />
+        <div class="form-row">
+          <label for="state">State:</label>
+          <input id="state" name="state" maxlength="2" placeholder="State (e.g. AR)" required />
+        </div>
 
-  <label for="email">Email Address:</label>
-  <input name="email" id="email" placeholder="Email" type="email" required />
+        <div class="form-row">
+          <label for="zip">ZIP Code:</label>
+          <input id="zip" name="zip" placeholder="ZIP" required />
+        </div>
 
-  <label for="notes">Notes:</label>
-  <textarea name="notes" id="notes" placeholder="Notes"></textarea>
+        <!-- Contact Info -->
+        <h3>Contact Information</h3>
 
-  <button type="submit">Add Customer</button>
-</form>
+        <div class="form-row">
+          <label for="phone">Phone:</label>
+          <input id="phone" name="phone" placeholder="Phone" required />
+        </div>
 
+        <div class="form-row">
+          <label for="email">Email:</label>
+          <input id="email" name="email" type="email" placeholder="Email" required />
+        </div>
 
+        <!-- Notes -->
+        <h3>Notes</h3>
 
-  <!-- 🔙 Back to homepage -->
-  <button onclick="location.href='index.html'">⬅️ Back to Home</button>
+        <div class="form-row">
+          <textarea id="notes" name="notes" placeholder="Enter notes here..." rows="6"></textarea>
+        </div>
+
+        <!-- Buttons -->
+        <div class="form-actions">
+          <!-- <button type="submit">Add Customer</button> -->
+          <button type="reset">Clear Form</button>
+          <button type="button" id="previewBtn">Review & Print</button>
+          <button type="button" onclick="location.href='index.html'">⬅️ Back to Home</button>
+        </div>
+
+      </form>
+    </div>
+  </div>
 </body>
 </html>

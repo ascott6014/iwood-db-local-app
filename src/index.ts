@@ -17,7 +17,7 @@ app.use(express.static('public', {extensions: ['html']}));
 app.use(express.json());
 
 
-// Endpointss
+// Endpointss jem
 app.post('/createCustomer', handleCreateNewCustomer); 
 app.post('/repairs/create-customer-repair', handleCustomerAndRepair);
 app.post('/repairs/create-repair', handleRepairForCustomer ); 
